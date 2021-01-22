@@ -8,13 +8,18 @@ After hitting play, these are called in this order:
 
 - ScriptableRendererFeature - Dispose()
 - ScriptableRendererFeature - Constructor
-- ScriptableRendererFeature - Create() * 3
+- ScriptableRendererFeature - Create() * 3 <--- _This happens in parallel of below MonoBehaviour events_
+- Object - MonoBehaviour - Awake()
+- Object - MonoBehaviour - OnEnable()
+- Object - MonoBehaviour - Start()
 
 And then every frame:
 
+- Object - MonoBehaviour - Update()
+- Object - MonoBehaviour - LateUpdate()
 - RenderPipelineManager - OnBeginFrameRendering()
 - RenderPipelineManager - OnBeginCameraRendering()
-- ~Renderer - MonoBehaviour - OnBecameVisible()~ Only once
+- Renderer - MonoBehaviour - OnBecameVisible()  <--- _Only once_
 - Renderer - MonoBehaviour - OnWillRenderObject()
 - ScriptableRendererFeature - AddRenderPasses()
 - ScriptableRenderPass - Constructor
@@ -27,6 +32,8 @@ And then every frame:
 
 After exiting play, these are called in this order:
 
+- Object - MonoBehaviour - OnDisable()
+- Object - MonoBehaviour - OnDestroy()
 - Renderer - MonoBehaviour - OnBecameInvisible()
 - ScriptableRendererFeature - Dispose()
 - ScriptableRendererFeature - Create()
