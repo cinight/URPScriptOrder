@@ -42,4 +42,4 @@ And then every frame:
 
 - ScriptableRendererFeature - AddRenderPasses()
 - ScriptableRenderPass - Constructor
-- ScriptableRenderPass - Execute
+- ScriptableRenderPass - Execute()
