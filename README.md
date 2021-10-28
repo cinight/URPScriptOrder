@@ -8,7 +8,7 @@ After hitting play, these are called in this order:
 
 - ScriptableRendererFeature - Dispose()
 - ScriptableRendererFeature - Constructor
-- ScriptableRendererFeature - Create() * 3 <--- _This happens in parallel of below MonoBehaviour events_
+- ScriptableRendererFeature - Create() * 3 <--- [bug 1308454](https://issuetracker.unity3d.com/issues/scriptablerendererfeature-dot-create-is-being-called-more-than-once-in-playmode-and-in-player). _This happens in parallel of below MonoBehaviour events_, 
 - Object - MonoBehaviour - Awake()
 - Object - MonoBehaviour - OnEnable()
 - Object - MonoBehaviour - Start()
