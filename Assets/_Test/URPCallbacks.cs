@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.RenderGraphModule;
+using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering.Universal.Internal;
@@ -80,9 +80,31 @@ public class URPCallbacks : ScriptableRendererFeature
             Debug.Log("ScriptableRenderPass - Execute() - "+"<color=yellow>"+m_Name+" - "+cam+"</color>");
             
             //Execute commandbuffer
-            var cmd = CommandBufferPool.Get("URP Callback Pass");
+            var cmd = CommandBufferPool.Get(m_Name);
             context.ExecuteCommandBuffer(cmd);
             CommandBufferPool.Release(cmd);
+        }
+        
+        class PassData
+        {
+        }
+        
+        public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
+        {
+            UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
+            var cam = cameraData.camera.name;
+            Debug.Log("ScriptableRenderPass - RecordRenderGraph() - "+"<color=yellow>"+m_Name+" - "+cam+"</color>");
+            
+            using (var builder = renderGraph.AddRasterRenderPass<PassData>(m_Name, out var passData))
+            {
+                Debug.Log("ScriptableRenderPass - RenderGraph.AddRasterRenderPass() - "+"<color=yellow>"+m_Name+" - "+cam+"</color>");
+                builder.AllowPassCulling(false);
+
+                builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
+                {
+                    Debug.Log("ScriptableRenderPass - Builder.SetRenderFunc() - "+"<color=yellow>"+m_Name+" - "+cam+"</color>");
+                });
+            }
         }
         
         public override void OnCameraCleanup(CommandBuffer cmd)
