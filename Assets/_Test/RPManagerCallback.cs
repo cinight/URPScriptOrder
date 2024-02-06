@@ -12,12 +12,15 @@ public class RPManagerCallback : MonoBehaviour
 
         RenderPipelineManager.endCameraRendering += OnEndCameraRendering;
         RenderPipelineManager.endFrameRendering += OnEndFrameRendering;
+        
+        RenderPipelineManager.beginContextRendering += OnBeginContextRendering;
+        RenderPipelineManager.endContextRendering += OnEndContextRendering;
 
     }
 
     void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        Debug.Log("RenderPipelineManager - OnBeginCameraRendering()");
+        Debug.Log("RenderPipelineManager - OnBeginCameraRendering() - "+camera.name);
     }
 
     void OnBeginFrameRendering(ScriptableRenderContext context, Camera[] cameras)
@@ -27,12 +30,22 @@ public class RPManagerCallback : MonoBehaviour
 
     void OnEndCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        Debug.Log("RenderPipelineManager - OnEndCameraRendering()");
+        Debug.Log("RenderPipelineManager - OnEndCameraRendering() - "+camera.name);
     }
 
     void OnEndFrameRendering(ScriptableRenderContext context, Camera[] cameras)
     {
         Debug.Log("RenderPipelineManager - OnEndFrameRendering()");
+    }
+    
+    void OnBeginContextRendering(ScriptableRenderContext context, List<Camera> cameras)
+    {
+        Debug.Log("RenderPipelineManager - OnBeginContextRendering()");
+    }
+    
+    void OnEndContextRendering(ScriptableRenderContext context, List<Camera> cameras)
+    {
+        Debug.Log("RenderPipelineManager - OnEndContextRendering()");
     }
 
     void OnDestroy()
@@ -42,5 +55,8 @@ public class RPManagerCallback : MonoBehaviour
 
         RenderPipelineManager.endCameraRendering -= OnEndCameraRendering;
         RenderPipelineManager.endFrameRendering -= OnEndFrameRendering;
+        
+        RenderPipelineManager.beginContextRendering -= OnBeginContextRendering;
+        RenderPipelineManager.endContextRendering -= OnEndContextRendering;
     }
 }
