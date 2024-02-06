@@ -24,9 +24,8 @@ public class URPCallbacks : ScriptableRendererFeature
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
         var cam = renderingData.cameraData.camera.name;
-        Debug.Log("ScriptableRendererFeature - AddRenderPasses() - "+cam);
-
-        var cameraColorTarget = renderer.cameraColorTarget;
+        Debug.Log("ScriptableRendererFeature - AddRenderPasses() - "+"<color=yellow>"+cam+"</color>");
+        
         var pass = new URPCallbackPass(Event);
         renderer.EnqueuePass(pass);
     }
@@ -34,13 +33,13 @@ public class URPCallbacks : ScriptableRendererFeature
     public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
     {
         var cam = renderingData.cameraData.camera.name;
-        Debug.Log("ScriptableRendererFeature - SetupRenderPasses() - "+cam);
+        Debug.Log("ScriptableRendererFeature - SetupRenderPasses() - "+"<color=yellow>"+cam+"</color>");
     }
     
     public override void OnCameraPreCull(ScriptableRenderer renderer, in CameraData cameraData)
     {
         var cam = cameraData.camera.name;
-        Debug.Log("ScriptableRendererFeature - OnCameraPreCull() - "+cam);
+        Debug.Log("ScriptableRendererFeature - OnCameraPreCull() - "+"<color=yellow>"+cam+"</color>");
     }
 
     protected override void Dispose(bool disposing)
@@ -65,13 +64,13 @@ public class URPCallbacks : ScriptableRendererFeature
         public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
         {
             var cam = renderingData.cameraData.camera.name;
-            Debug.Log("ScriptableRenderPass - OnCameraSetup() - "+cam);
+            Debug.Log("ScriptableRenderPass - OnCameraSetup() - "+"<color=yellow>"+cam+"</color>");
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             var cam = renderingData.cameraData.camera.name;
-            Debug.Log("ScriptableRenderPass - Execute() - "+cam);
+            Debug.Log("ScriptableRenderPass - Execute() - "+"<color=yellow>"+cam+"</color>");
             
             //Execute commandbuffer
             var cmd = CommandBufferPool.Get("URP Callback Pass");

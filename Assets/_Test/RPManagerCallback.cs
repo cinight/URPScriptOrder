@@ -20,7 +20,7 @@ public class RPManagerCallback : MonoBehaviour
 
     void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        Debug.Log("RenderPipelineManager - OnBeginCameraRendering() - "+camera.name);
+        Debug.Log("RenderPipelineManager - OnBeginCameraRendering() - "+"<color=yellow>"+camera.name+"</color>");
     }
 
     void OnBeginFrameRendering(ScriptableRenderContext context, Camera[] cameras)
@@ -30,7 +30,7 @@ public class RPManagerCallback : MonoBehaviour
 
     void OnEndCameraRendering(ScriptableRenderContext context, Camera camera)
     {
-        Debug.Log("RenderPipelineManager - OnEndCameraRendering() - "+camera.name);
+        Debug.Log("RenderPipelineManager - OnEndCameraRendering() - "+"<color=yellow>"+camera.name+"</color>");
     }
 
     void OnEndFrameRendering(ScriptableRenderContext context, Camera[] cameras)

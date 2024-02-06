@@ -8,79 +8,79 @@ public class RenderingCallback : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - Awake()");
+        Debug.Log("MonoBehaviour - Awake() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void Start()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - Start()");
+        Debug.Log(" MonoBehaviour - Start() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void Update()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - Update()");
+        Debug.Log(" MonoBehaviour - Update() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void LateUpdate()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - LateUpdate()");
+        Debug.Log(" MonoBehaviour - LateUpdate() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnEnable()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnEnable()");
+        Debug.Log(" MonoBehaviour - OnEnable() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnDisable()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnDisable()");
+        Debug.Log(" MonoBehaviour - OnDisable() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnDestroy()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnDestroy()");
+        Debug.Log(" MonoBehaviour - OnDestroy() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     // Rendering
 
     void OnWillRenderObject()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnWillRenderObject()");
+        Debug.Log(" MonoBehaviour - OnWillRenderObject() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnPreCull()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnPreCull()");
+        Debug.Log(" MonoBehaviour - OnPreCull() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnBecameVisible()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnBecameVisible()");
+        Debug.Log(" MonoBehaviour - OnBecameVisible() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnBecameInvisible()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnBecameInvisible()");
+        Debug.Log(" MonoBehaviour - OnBecameInvisible() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnPreRender()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnPreRender()");
+        Debug.Log(" MonoBehaviour - OnPreRender() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnRenderObject()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnRenderObject()");
+        Debug.Log(" MonoBehaviour - OnRenderObject() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnPostRender()
     {
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnPostRender()");
+        Debug.Log(" MonoBehaviour - OnPostRender() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
         Graphics.Blit(src,dst);
-        Debug.Log(this.gameObject.name + " MonoBehaviour - OnRenderImage()");
+        Debug.Log(" MonoBehaviour - OnRenderImage() - "+"<color=yellow>"+this.gameObject.name+"</color>");
     }
 }
