@@ -9,68 +9,72 @@ using UnityEngine.Rendering.Universal.Internal;
 [CreateAssetMenu]
 public class URPCallbacks : ScriptableRendererFeature
 {
+    public string name = "Feature1";
     public RenderPassEvent Event = RenderPassEvent.AfterRenderingPostProcessing;
 
 	public URPCallbacks()
 	{
-        Debug.Log("ScriptableRendererFeature - Constructor");
+        Debug.Log("ScriptableRendererFeature - Constructor - "+"<color=yellow>"+name+"</color>");
 	}
 
 	public override void Create()
     {
-        Debug.Log("ScriptableRendererFeature - Create()");
+        Debug.Log("ScriptableRendererFeature - Create() - "+"<color=yellow>"+name+"</color>");
 	}
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
         var cam = renderingData.cameraData.camera.name;
-        Debug.Log("ScriptableRendererFeature - AddRenderPasses() - "+"<color=yellow>"+cam+"</color>");
+        Debug.Log("ScriptableRendererFeature - AddRenderPasses() - "+"<color=yellow>"+name+" - "+cam+"</color>");
         
-        var pass = new URPCallbackPass(Event);
+        var pass = new URPCallbackPass(Event, name);
         renderer.EnqueuePass(pass);
     }
     
     public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
     {
         var cam = renderingData.cameraData.camera.name;
-        Debug.Log("ScriptableRendererFeature - SetupRenderPasses() - "+"<color=yellow>"+cam+"</color>");
+        Debug.Log("ScriptableRendererFeature - SetupRenderPasses() - "+"<color=yellow>"+name+" - "+cam+"</color>");
     }
     
     public override void OnCameraPreCull(ScriptableRenderer renderer, in CameraData cameraData)
     {
         var cam = cameraData.camera.name;
-        Debug.Log("ScriptableRendererFeature - OnCameraPreCull() - "+"<color=yellow>"+cam+"</color>");
+        Debug.Log("ScriptableRendererFeature - OnCameraPreCull() - "+"<color=yellow>"+name+" - "+cam+"</color>");
     }
 
     protected override void Dispose(bool disposing)
     {
-        Debug.Log("ScriptableRendererFeature - Dispose()");
+        Debug.Log("ScriptableRendererFeature - Dispose() - "+"<color=yellow>"+name+"</color>");
     }
 
     //========================================================================================================
     internal class URPCallbackPass : ScriptableRenderPass
     {
-        public URPCallbackPass(RenderPassEvent renderPassEvent)
+        private string m_Name;
+        
+        public URPCallbackPass(RenderPassEvent renderPassEvent, string name)
         {
-            Debug.Log("ScriptableRenderPass - Constructor");
+            //Debug.Log("ScriptableRenderPass - Constructor"); Not important as you can customize when to create the pass
             this.renderPassEvent = renderPassEvent;
+            m_Name = name;
         }
         
         public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
         {
-            Debug.Log("ScriptableRenderPass - Configure()");
+            Debug.Log("ScriptableRenderPass - Configure() - "+"<color=yellow>"+m_Name+"</color>");
         }
         
         public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
         {
             var cam = renderingData.cameraData.camera.name;
-            Debug.Log("ScriptableRenderPass - OnCameraSetup() - "+"<color=yellow>"+cam+"</color>");
+            Debug.Log("ScriptableRenderPass - OnCameraSetup() - "+"<color=yellow>"+m_Name+" - "+"</color>");
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             var cam = renderingData.cameraData.camera.name;
-            Debug.Log("ScriptableRenderPass - Execute() - "+"<color=yellow>"+cam+"</color>");
+            Debug.Log("ScriptableRenderPass - Execute() - "+"<color=yellow>"+m_Name+" - "+"</color>");
             
             //Execute commandbuffer
             var cmd = CommandBufferPool.Get("URP Callback Pass");
@@ -80,12 +84,12 @@ public class URPCallbacks : ScriptableRendererFeature
         
         public override void OnCameraCleanup(CommandBuffer cmd)
         {
-            Debug.Log("ScriptableRenderPass - OnCameraCleanup()");
+            Debug.Log("ScriptableRenderPass - OnCameraCleanup() - "+"<color=yellow>"+m_Name+"</color>");
         }
         
         public override void OnFinishCameraStackRendering(CommandBuffer cmd)
         {
-            Debug.Log("ScriptableRenderPass - OnFinishCameraStackRendering()");
+            Debug.Log("ScriptableRenderPass - OnFinishCameraStackRendering() - "+"<color=yellow>"+m_Name+"</color>");
         }
     }
 }
